@@ -10,7 +10,7 @@ import Foundation
 
 class httpWork: NSObject, URLSessionDelegate {
     
-    let siteString = "https://minithon2-b-team-back-end.herokuapp.com/api";
+    private let siteString = "https://minithon2-b-team-back-end.herokuapp.com/api";
     
     
     //MARK: http request with uri parameters

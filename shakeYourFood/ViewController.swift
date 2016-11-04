@@ -15,23 +15,31 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-/* 
- 
-    examples
-        // GET /v1/search
-        API.getNearbyRestaurant(Latitude: 25.0037154, Longitude: 121.5145271, callback: {(resDic) in
-            print("resDic : \(resDic)");
-        })
 
         
         
-       // GET /v1/search/action
-        API.furtherAction(Latitude: 25.0521953, Longitude: 121.5295933, place_id: "ChIJe3D4HM-rQjQRuATzrGPLVD8", food_id: "ChIJe3D4HM-rQjQRuATzrGPLVD8", action: enjoy_status_action.dislike, callback: {(resDic) in
-            print("resDic : \(resDic)");
-        })
-   
- 
-*/
+        
+        // GET /v1/search
+        API.getNearbyRestaurant(Latitude: 25.0037154,
+                                Longitude: 121.5145271,
+                                callback:
+            {(res,foo)->Void in
+                print("res, name:\(res?.name), local:(\(res?.location?.longitude),\(res?.location?.latitude)), placeid:\(res?.place_id), vicinty:\(res?.vicinity) \n");
+                print("food, id:\(foo?.id), name:\(foo?.name), placeid:\(foo?.place_id), price:\(foo?.price), url:\(foo?.url) \n");
+        });
+        
+        // GET /v1/search/action
+        API.furtherAction(Latitude: 25.023696,
+                          Longitude: 121.5252311,
+                          place_id: "ChIJN5RMH5CpQjQRAoN8D1LuNeM",
+                          food_id: "f000003",
+                          action: enjoy_status_action.dislike,
+                          callback:
+            {(res,foo)->Void in
+                print("res, name:\(res?.name), local:(\(res?.location?.longitude),\(res?.location?.latitude)), placeid:\(res?.place_id), vicinty:\(res?.vicinity) \n");
+                print("food, id:\(foo?.id), name:\(foo?.name), placeid:\(foo?.place_id), price:\(foo?.price), url:\(foo?.url) \n");
+        });
+        
         
     }
     

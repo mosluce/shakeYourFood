@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32303E681DC919290032841B /* v1API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32303E671DC919290032841B /* v1API.swift */; };
+		32303E6A1DC919310032841B /* http.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32303E691DC919310032841B /* http.swift */; };
 		328E33091DC8CA4400C3A520 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E33081DC8CA4400C3A520 /* AppDelegate.swift */; };
 		328E330B1DC8CA4400C3A520 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E330A1DC8CA4400C3A520 /* ViewController.swift */; };
 		328E330E1DC8CA4400C3A520 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328E330C1DC8CA4400C3A520 /* Main.storyboard */; };
 		328E33111DC8CA4400C3A520 /* shakeYourFood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 328E330F1DC8CA4400C3A520 /* shakeYourFood.xcdatamodeld */; };
 		328E33131DC8CA4400C3A520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328E33121DC8CA4400C3A520 /* Assets.xcassets */; };
 		328E33161DC8CA4400C3A520 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328E33141DC8CA4400C3A520 /* LaunchScreen.storyboard */; };
-		328E331F1DC8FB5500C3A520 /* http.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E331E1DC8FB5500C3A520 /* http.swift */; };
-		328E33221DC9046900C3A520 /* v1API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E33211DC9046900C3A520 /* v1API.swift */; };
+		32DC02401DCBA4DD0001133D /* v1API_structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC023F1DCBA4DD0001133D /* v1API_structs.swift */; };
+		32DC02421DCCF41C0001133D /* v1API_parsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC02411DCCF41C0001133D /* v1API_parsers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32303E671DC919290032841B /* v1API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = v1API.swift; path = api/v1API.swift; sourceTree = "<group>"; };
+		32303E691DC919310032841B /* http.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = http.swift; path = network/http.swift; sourceTree = "<group>"; };
 		328E33051DC8CA4400C3A520 /* shakeYourFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shakeYourFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		328E33081DC8CA4400C3A520 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		328E330A1DC8CA4400C3A520 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +30,8 @@
 		328E33121DC8CA4400C3A520 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		328E33151DC8CA4400C3A520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		328E33171DC8CA4400C3A520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		328E331E1DC8FB5500C3A520 /* http.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = http.swift; sourceTree = "<group>"; };
-		328E33211DC9046900C3A520 /* v1API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = v1API.swift; sourceTree = "<group>"; };
+		32DC023F1DCBA4DD0001133D /* v1API_structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = v1API_structs.swift; path = api/v1API_structs.swift; sourceTree = "<group>"; };
+		32DC02411DCCF41C0001133D /* v1API_parsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = v1API_parsers.swift; path = api/v1API_parsers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +80,7 @@
 		328E331D1DC8FB3100C3A520 /* network */ = {
 			isa = PBXGroup;
 			children = (
-				328E331E1DC8FB5500C3A520 /* http.swift */,
+				32303E691DC919310032841B /* http.swift */,
 			);
 			name = network;
 			sourceTree = "<group>";
@@ -84,7 +88,9 @@
 		328E33201DC9042A00C3A520 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				328E33211DC9046900C3A520 /* v1API.swift */,
+				32DC023F1DCBA4DD0001133D /* v1API_structs.swift */,
+				32303E671DC919290032841B /* v1API.swift */,
+				32DC02411DCCF41C0001133D /* v1API_parsers.swift */,
 			);
 			name = api;
 			sourceTree = "<group>";
@@ -163,10 +169,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				328E330B1DC8CA4400C3A520 /* ViewController.swift in Sources */,
-				328E331F1DC8FB5500C3A520 /* http.swift in Sources */,
+				32303E681DC919290032841B /* v1API.swift in Sources */,
 				328E33111DC8CA4400C3A520 /* shakeYourFood.xcdatamodeld in Sources */,
+				32DC02421DCCF41C0001133D /* v1API_parsers.swift in Sources */,
+				32303E6A1DC919310032841B /* http.swift in Sources */,
 				328E33091DC8CA4400C3A520 /* AppDelegate.swift in Sources */,
-				328E33221DC9046900C3A520 /* v1API.swift in Sources */,
+				32DC02401DCBA4DD0001133D /* v1API_structs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +299,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N84UR3K6JA;
 				INFOPLIST_FILE = shakeYourFood/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SohoGroup.shakeYourFood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -304,6 +313,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = N84UR3K6JA;
 				INFOPLIST_FILE = shakeYourFood/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SohoGroup.shakeYourFood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -330,6 +340,7 @@
 				328E331C1DC8CA4400C3A520 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
