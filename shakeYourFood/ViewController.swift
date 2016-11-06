@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         
         
-        
+        /*
         // GET /v1/search
         API.getNearbyRestaurant(Latitude: 25.0037154,
                                 Longitude: 121.5145271,
@@ -39,7 +39,17 @@ class ViewController: UIViewController {
                 print("res, name:\(res?.name), local:(\(res?.location?.longitude),\(res?.location?.latitude)), placeid:\(res?.place_id), vicinty:\(res?.vicinity) \n");
                 print("food, id:\(foo?.id), name:\(foo?.name), placeid:\(foo?.place_id), price:\(foo?.price), url:\(foo?.url) \n");
         });
+        */
         
+        
+        
+        // GET /v1/reataurant
+        API.getNearbyRestaurantList(Latitude: 25.0037154, Longitude: 121.5145271, callback: {(resList)->Void in
+            for res in resList!
+            {
+                print("res, name:\(res.name), local:(\(res.location?.longitude),\(res.location?.latitude)), placeid:\(res.place_id), vicinty:\(res.vicinity) \n");
+            }
+        })
         
     }
     

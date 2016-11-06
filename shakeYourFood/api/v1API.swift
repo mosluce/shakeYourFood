@@ -17,6 +17,7 @@ enum enjoy_status_action: Int {
 
 
 
+//MARK: shake api
 
 class v1API: AnyObject {
     
@@ -215,4 +216,67 @@ class v1API: AnyObject {
 
     }
     
+    
+    
+    //MARK: Map api
+    
+    //GET /v1/restaurant
+    /**
+     To get the list of restaurants nearby the input location.
+     */
+    func getNearbyRestaurantList(Latitude lat:Float, Longitude lng:Float, callback : @escaping (_ restaurantDataList : [restaurant]?)->Void)
+    {
+        http.httpRequestWithURLParam(withRoute: "/v1/restaurant", HTTPMethod: "GET", parameters: ["uid":uid, "lat":"\(lat)", "lng":"\(lng)"], callback: {(data, res, err)->Void in
+            
+            if(data == nil)
+            {
+                print("no data.");
+                callback(nil);
+            }
+            do{
+                let responseData : [String:AnyObject]? = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:AnyObject];
+                print("responseData : \(responseData)");
+                
+                if responseData == nil
+                {
+                    print("json parse failed.");
+                    callback(nil);
+                }
+                
+                for (Key, Value) in responseData!
+                {
+                    if (Key == "respCode" && Value is String && ((Value as? String) != "SUCCESS"))
+                    {
+                        print("respCode is not SUCCESS.");
+                        callback(nil);
+                    }else if(Key == "message" && Value is String)
+                    {
+                        print("Message from server : \(Value as! String)");
+                    }else if(Key == "restaurantList" && Value is [[String:AnyObject]])
+                    {
+                        let resTempList : [[String:AnyObject]]? = Value as? [[String:AnyObject]];
+                        var reslistForCallBack : [restaurant]? = [];
+                        if resTempList == nil
+                        {
+                            print("templist is nil")
+                            callback(nil);
+                        }
+                        
+                        for res in resTempList!
+                        {
+                            let tempRes : restaurant = v1API_Parser().parseReestaurant(restaurant: res);
+                            reslistForCallBack?.append(tempRes);
+                        }
+                        
+                        callback(reslistForCallBack);
+                    }
+                }
+                
+                
+            }catch
+            {
+                callback(nil);
+            }
+        })
+    }
 }

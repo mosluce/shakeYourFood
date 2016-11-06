@@ -9,17 +9,12 @@
 import Foundation
 
 class v1API_Parser: AnyObject {
+    
     func parseReestaurant(restaurant resDic:[String : AnyObject]) -> restaurant {
         var result = restaurant();
         
         print("resDic : \(resDic)");
-//        do{
-//            
-//            let responseData:[String:AnyObject] = try JSONSerialization.jsonObject(with: resDic!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:AnyObject];
-//        }catch
-//        {
-//            
-//        }
+
         //location
         if let location = resDic["location"] as? [String:Double]
         {
