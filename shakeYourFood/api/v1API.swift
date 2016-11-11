@@ -57,7 +57,7 @@ class v1API: AnyObject {
         }
      }
     */
-    func getNearbyRestaurant(Latitude lat:Float, Longitude lng:Float, callback : @escaping (_ restaurantData : restaurant?, _ foodData : food?)->Void){
+    func getNearbyRestaurant(Latitude lat:Double, Longitude lng:Double, callback : @escaping (_ restaurantData : restaurant?, _ foodData : food?)->Void){
         
         http.httpRequestWithURLParam(withRoute: "/v1/search", HTTPMethod: "GET", parameters: ["uid":uid, "lat":"\(lat)", "lng":"\(lng)"], callback: {(data,res,err) in
             if err == nil{
@@ -94,10 +94,15 @@ class v1API: AnyObject {
                             }
                         }
                         
-                        callback(res, foo);
+                        DispatchQueue.main.async {
+                            callback(res, foo);
+                        }
+                        
                         
                     }else{
-                        callback(nil, nil);
+                        DispatchQueue.main.async{
+                            callback(nil, nil);
+                        }
                     }
                     
                     
@@ -109,14 +114,18 @@ class v1API: AnyObject {
                 }catch{
                     
                     print("catch");
-                    callback(nil, nil);
+                    DispatchQueue.main.async{
+                        callback(nil, nil);
+                    }
                     
                 }
                 
             }else{
                 
                 print("error:\(err)");
-                callback(nil, nil);
+                DispatchQueue.main.async{
+                    callback(nil, nil);
+                }
                 
             }
 
@@ -151,7 +160,7 @@ class v1API: AnyObject {
      }
      
      */
-    func furtherAction(Latitude lat:Float, Longitude lng:Float, place_id pid:String, food_id fid:String, action:enjoy_status_action, callback : @escaping (_ restaurantData : restaurant?, _ foodData : food?)->Void){
+    func furtherAction(Latitude lat:Double, Longitude lng:Double, place_id pid:String, food_id fid:String, action:enjoy_status_action, callback : @escaping (_ restaurantData : restaurant?, _ foodData : food?)->Void){
         
         http.httpRequestWithURLParam(withRoute: "/v1/search/action", HTTPMethod: "GET", parameters: ["uid":uid, "lat":"\(lat)", "lng":"\(lng)", "place_id":"\(pid)", "foodId":"\(fid)", "action":"\(action.rawValue)"], callback: {(data,res,err) in
             if err == nil{
@@ -187,11 +196,15 @@ class v1API: AnyObject {
                                 print("\n message from server : \(value). \n");
                             }
                         }
+                        DispatchQueue.main.async {
+                            callback(res, foo);
+                        }
                         
-                        callback(res, foo);
                         
                     }else{
-                        callback(nil, nil);
+                        DispatchQueue.main.async {
+                            callback(nil, nil);
+                        }
                     }
 
                     
@@ -201,14 +214,18 @@ class v1API: AnyObject {
                 }catch{
                     
                     print("catch");
-                    callback(nil, nil);
+                    DispatchQueue.main.async {
+                        callback(nil, nil);
+                    }
                     
                 }
                 
             }else{
                 
                 print("error:\(err)");
-                callback(nil, nil);
+                DispatchQueue.main.async {
+                    callback(nil, nil);
+                }
                 
             }
             
@@ -224,14 +241,16 @@ class v1API: AnyObject {
     /**
      To get the list of restaurants nearby the input location.
      */
-    func getNearbyRestaurantList(Latitude lat:Float, Longitude lng:Float, callback : @escaping (_ restaurantDataList : [restaurant]?)->Void)
+    func getNearbyRestaurantList(Latitude lat:Double, Longitude lng:Double, callback : @escaping (_ restaurantDataList : [restaurant]?)->Void)
     {
         http.httpRequestWithURLParam(withRoute: "/v1/restaurant", HTTPMethod: "GET", parameters: ["uid":uid, "lat":"\(lat)", "lng":"\(lng)"], callback: {(data, res, err)->Void in
             
             if(data == nil)
             {
                 print("no data.");
-                callback(nil);
+                DispatchQueue.main.async {
+                    callback(nil);
+                }
             }
             do{
                 let responseData : [String:AnyObject]? = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:AnyObject];
@@ -240,7 +259,9 @@ class v1API: AnyObject {
                 if responseData == nil
                 {
                     print("json parse failed.");
-                    callback(nil);
+                    DispatchQueue.main.async {
+                        callback(nil);
+                    }
                 }
                 
                 for (Key, Value) in responseData!
@@ -248,7 +269,9 @@ class v1API: AnyObject {
                     if (Key == "respCode" && Value is String && ((Value as? String) != "SUCCESS"))
                     {
                         print("respCode is not SUCCESS.");
-                        callback(nil);
+                        DispatchQueue.main.async {
+                            callback(nil);
+                        }
                     }else if(Key == "message" && Value is String)
                     {
                         print("Message from server : \(Value as! String)");
@@ -259,7 +282,9 @@ class v1API: AnyObject {
                         if resTempList == nil
                         {
                             print("templist is nil")
-                            callback(nil);
+                            DispatchQueue.main.async {
+                                callback(nil);
+                            }
                         }
                         
                         for res in resTempList!
@@ -268,14 +293,19 @@ class v1API: AnyObject {
                             reslistForCallBack?.append(tempRes);
                         }
                         
-                        callback(reslistForCallBack);
+                        DispatchQueue.main.async {
+                            callback(reslistForCallBack);
+                        }
+                        
                     }
                 }
                 
                 
             }catch
             {
-                callback(nil);
+                DispatchQueue.main.async {
+                    callback(nil);
+                }
             }
         })
     }
