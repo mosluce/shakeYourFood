@@ -11,10 +11,13 @@ import Foundation
 class httpWork: NSObject, URLSessionDelegate {
     
     private let siteString = "https://minithon2-b-team-back-end.herokuapp.com/api";
+    private var currentTask: URLSessionTask?
     
     
     //MARK: http request with uri parameters
     func httpRequestWithURLParam(withRoute route : String, HTTPMethod method:String, parameters paramDic : [String : String], callback : @escaping (_ data:Data?, _ res:URLResponse?, _ error:Error?)->Void) -> Void {
+        
+        self.currentTask?.cancel()
         
         var urlStr : String = siteString + route;
         
@@ -62,7 +65,7 @@ class httpWork: NSObject, URLSessionDelegate {
         
         task.resume()
 
-        
+        self.currentTask = task
         
     }
     
